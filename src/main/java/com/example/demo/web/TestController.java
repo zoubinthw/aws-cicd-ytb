@@ -11,11 +11,16 @@ import java.net.UnknownHostException;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/test")
+//@RequestMapping("/test")
 public class TestController {
-    @GetMapping
+    @GetMapping("/test")
     public ResponseEntity<Map<String, String>> test() throws UnknownHostException {
         String hostAddress = Inet4Address.getLocalHost().getHostAddress();
         return ResponseEntity.ok().body(Map.of("Testing", "Up and running: " + hostAddress));
+    }
+
+    @GetMapping
+    public ResponseEntity<Map<String, String>> health() throws UnknownHostException {
+        return ResponseEntity.ok().body(Map.of("Status", "Up"));
     }
 }
